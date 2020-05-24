@@ -5,6 +5,46 @@ import logging
 #roman_modern
 rom_mod = { 'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000} 
 
+#http://www.math.edu.pl/system-rzymski
+#1. Obok siebie mogą stać co najwyżej trzy znaki spośród: I, X, C lub M.
+#2. Obok siebie nie mogą stać dwa znaki: V, L, D.
+#3. Nie może być dwóch znaków oznaczających liczby mniejsze bezpośrednio przed znakiem oznaczającym liczbę większą.
+#4. Znakami poprzedzającymi znak oznaczający większą liczbę mogą być tylko znaki: I, X, C.
+def checkSyntaxInputRomanNumber(romanNumber):
+    logging.debug("checkSyntaxInputRomanNumber")
+    logging.debug("romanNumber")
+    #1
+    tabFirstRule = ['I', 'X', 'C', 'M']
+    vSumLetter=0
+    good_syntax=True
+    for i in range(len(romanNumber)):
+        if i == 0:
+            vSum=1
+            beforeLetter=romanNumber[0]
+            lastLetter=romanNumber[0]
+        else:
+            lastLetter=romanNumber[i]
+            beforeLetter=romanNumber[i-1]
+            if lastLetter == beforeLetter:
+                if lastLetter in tabFirstRule:
+                    if vSum < 3:
+                        vSum += 1
+                    else:
+                        print("Nie możesz użyć 3 znaków pod rząd !")
+                        good_syntax=False
+                        break
+                else:
+                   print("Nie możesz użyć tego znaku wiecej niż raz po sobie !")
+                   good_syntax=False
+                   break
+            else:
+                vSum=1
+          
+        logging.debug("i:"+str(i))
+        logging.debug("  vSum:"+str(vSum))
+        logging.debug("  lastletter:"+str(lastLetter))
+    return good_syntax  
+
 def def_params():
     parser = argparse.ArgumentParser(
             description='testowy opis'
@@ -48,8 +88,11 @@ def main():
         if number.isnumeric():
             output_number = converterModernToRoman(number, args.loghami)
         else:
-            output_number = converterRomanToModern(number, args.loghami)
-        print("Wynik:" + str(output_number))
+            if checkSyntaxInputRomanNumber(number) == True:
+                output_number = converterRomanToModern(number, args.loghami)
+                print("Wynik:" + str(output_number))
+            else:
+                print("Błąd w syntaksie!")
 if __name__ == "__main__":
     main()
 

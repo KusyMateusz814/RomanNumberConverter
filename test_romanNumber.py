@@ -1,40 +1,62 @@
 import pytest
 from converterRomanNumber import converterRomanToModern
 from converterRomanNumber import converterModernToRoman
-
+from converterRomanNumber import checkSyntaxInputRomanNumber
 #1. Obok siebie moga stać co najwyżej trzy znaki sposrod: I, X, C, M
+#metoda checkSyntaxInputRomanNumber zwraca false jesli input ma zly syntax
 def test_syntaxInputRomanNumberXXXX():
-    result = checkSyntaxInputRomanNumber('XXXX','-l')
+    result = checkSyntaxInputRomanNumber('XXXX')
  
-    assert result
+    assert result == False
+
+def test_syntaxInputRomanNumberXXX():
+    result = checkSyntaxInputRomanNumber('XXX')
+
+    assert result == True
+
+def test_syntaxInputRomanNumberCCC():
+    result = checkSyntaxInputRomanNumber('CCC')
+ 
+    assert result == True
 
 def test_syntaxInputRomanNumberCCCC():
-    result = checkSyntaxInputRomanNumber('CCCC','-l')
+    result = checkSyntaxInputRomanNumber('CCCC')
  
-    assert result
+    assert result == False
 
 def test_syntaxInputRomanNumberMMMM():
-    result = checkSyntaxInputRomanNumber('MMMM','-l')
+    result = checkSyntaxInputRomanNumber('MMMM')
  
-    assert result
+    assert result == False
+
+def test_syntaxInputRomanNumberMMM():
+    result = checkSyntaxInputRomanNumber('MMM')
+ 
+    assert result == True
 
 def test_syntaxInputRomanNumberIIII():
-    result = checkSyntaxInputRomanNumber('IIII','-l')
+    result = checkSyntaxInputRomanNumber('III')
  
-    assert result
+    assert result == True
+
+def test_syntaxInputRomanNumberIIII():
+    result = checkSyntaxInputRomanNumber('IIII')
+ 
+    assert result == False
+#2. Obok siebie nie mogą stać dwa znaki: V, L, D
 #2. Obok siebie nie mogą stać dwa znaki: V, L, D
 def test_syntaxInputRomanNumberVV():
-    result = checkSyntaxInputRomanNumber('VV','-l')
+    result = checkSyntaxInputRomanNumber('VV')
  
     assert result
 
 def test_syntaxInputRomanNumberMLL():
-    result = checkSyntaxInputRomanNumber('MLL','-l')
+    result = checkSyntaxInputRomanNumber('MLL')
  
     assert result
 
 def test_syntaxInputRomanNumberCVV():
-    result = checkSyntaxInputRomanNumber('CVV','-l')
+    result = checkSyntaxInputRomanNumber('CVV')
  
     assert result
 
