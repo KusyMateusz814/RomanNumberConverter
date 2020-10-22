@@ -15,6 +15,7 @@ def checkSyntaxInputRomanNumber(romanNumber):
     logging.debug("romanNumber")
     #1
     tabFirstRule = ['I', 'X', 'C', 'M']
+    tabSecondRule = ['V','L','D']
     vSumLetter=0
     good_syntax=True
     for i in range(len(romanNumber)):
@@ -22,6 +23,7 @@ def checkSyntaxInputRomanNumber(romanNumber):
             vSum=1
             beforeLetter=romanNumber[0]
             lastLetter=romanNumber[0]
+            dominateLetter=romanNumber[0]
         else:
             lastLetter=romanNumber[i]
             beforeLetter=romanNumber[i-1]
@@ -39,6 +41,7 @@ def checkSyntaxInputRomanNumber(romanNumber):
                    break
             else:
                 vSum=1
+            
           
         logging.debug("i:"+str(i))
         logging.debug("  vSum:"+str(vSum))

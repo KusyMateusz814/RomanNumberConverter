@@ -34,7 +34,7 @@ def test_syntaxInputRomanNumberMMM():
  
     assert result == True
 
-def test_syntaxInputRomanNumberIIII():
+def test_syntaxInputRomanNumberIII():
     result = checkSyntaxInputRomanNumber('III')
  
     assert result == True
@@ -43,7 +43,32 @@ def test_syntaxInputRomanNumberIIII():
     result = checkSyntaxInputRomanNumber('IIII')
  
     assert result == False
+
+def test_syntaxInputRomanNumberCIII():
+    result = checkSyntaxInputRomanNumber('CIII')
+ 
+    assert result == True
+
+def test_syntaxInputRomanNumberCIIII():
+    result = checkSyntaxInputRomanNumber('CIIII')
+ 
+    assert result == False
+
+def test_syntaxInputRomanNumberCVIII():
+    result = checkSyntaxInputRomanNumber('CVIII')
+ 
+    assert result == True
+
+def test_syntaxInputRomanNumberCVIIII():
+    result = checkSyntaxInputRomanNumber('CVIIII')
+ 
+    assert result == False
+
+
+
+
 #2. Obok siebie nie mogą stać dwa znaki: V, L, D
+
 #2. Obok siebie nie mogą stać dwa znaki: V, L, D
 def test_syntaxInputRomanNumberVV():
     result = checkSyntaxInputRomanNumber('VV')
